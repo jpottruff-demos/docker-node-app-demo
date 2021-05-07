@@ -2,10 +2,12 @@
 
 ### Building Images
 
-`docker build .`  
+`docker build .`
+
 `docker build -t <some name> .`
 
 `docker image ls`
+
 `docker image rm <image id>`
 
 ### Running Containers
@@ -23,7 +25,9 @@
 - same as above - specifies ports `<access port>:<container-port-its-mapped-to>`
 
 `docker ps`
+
 `docker rm <stopped container>`
+
 `docker rm <container> -f`
 
 ### Shelling into Containers
