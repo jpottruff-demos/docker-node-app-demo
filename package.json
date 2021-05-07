@@ -1,0 +1,17 @@
+{
+  "name": "node-docker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:image": "docker build -t node-app-img .",
+    "run:container": "docker run -p 3000:3000 -d --name node-app-container node-app-img",
+    "bash:container": "docker exec -it node-app-container bash"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
