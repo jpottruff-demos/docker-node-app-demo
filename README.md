@@ -20,9 +20,25 @@
 
 - named container, running in detached mode (eg. will not see console output)
 
+<hr />
+
 `docker run -p 3000:3000 -d --name <container name> <image name>`
 
-- same as above - specifies ports `<access port>:<container-port-its-mapped-to>`
+- same as above - specifies ports `-p <access port>:<container-port-its-mapped-to>`
+
+`docker run -v C:\Users\Me\docker\node-docker\:/app -p 3000:3000 -d --name <container name> <image name>`
+
+- same as above - specifies bind mount `-v <pathToLocalFolder>:<pathToContainerFolder>`
+
+  NOTE: could also substitute the long local path with a variable (provided you are running the command from the localhost folder you want to map):
+
+  - **cmd:** `%cd%`
+  - **powershell:** `${pwd}`
+  - **bash:** `$(pwd)`
+
+  Sometimes `git bash for Windows` causes problems
+
+<hr />
 
 `docker ps`
 

@@ -1,4 +1,4 @@
-# ab the docker hub image (this could come from docker hub or a private repo)
+# Add the docker hub image (this could come from docker hub or a private repo)
 FROM node:15
 
 # Working Directory in the container 
@@ -23,5 +23,5 @@ COPY . ./
 # you must put it in your run command (eg. -p 3000:3000)
 EXPOSE 3000
 
-# Starts the app
-CMD ["node", "index.js"]
+# Starts the app (dev via nodemon)
+CMD ["npm", "run", "dev"]

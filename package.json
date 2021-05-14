@@ -4,14 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:image": "docker build -t node-app-img .",
-    "run:container": "docker run -p 3000:3000 -d --name node-app-container node-app-img",
-    "bash:container": "docker exec -it node-app-container bash"
+    "start": "node index.js",
+    "dev": "nodemon -L index.js",
+    "image:build": "docker build -t node-app-img .",
+    "container:run": "docker run -p 3000:3000 -d --name node-app-container node-app-img",
+    "container:run-mount-cmd": "docker run -v %cd%:/app -p 3000:3000 -d --name node-app-container node-app-img",
+    "container:run-mount-psh": "docker run -v ${pwd}:/app -p 3000:3000 -d --name node-app-container node-app-img",
+    "container:run-mount-bash": "docker run -v $(pwd):/app -p 3000:3000 -d --name node-app-container node-app-img",
+    "container:remove": "docker rm node-app-container -f",
+    "container:bash": "docker exec -it node-app-container bash"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
