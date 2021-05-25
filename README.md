@@ -1,34 +1,24 @@
 ## Commands Used
 
-### Building Images
+Most of these have been tracked in the `package.json`
 
-`docker build .`
+### Images
 
-`docker build -t <some name> .`
+_See `image:*` commands_
 
-`docker image ls`
+- `docker build -t <image name> .`
+- `docker image ls`
+- `docker image rm <image id>`
 
-`docker image rm <image id>`
+### Containers
 
-### Running Containers
+_See `container:*` commands_
 
-`docker run <image name>`
-
-- namessless containter
-
-`docker run -d --name <container name> <image name>`
-
-- named container, running in detached mode (eg. will not see console output)
-
-<hr />
-
-`docker run -p 3000:3000 -d --name <container name> <image name>`
-
-- same as above - specifies ports `-p <access port>:<container-port-its-mapped-to>`
-
-`docker run -v C:\Users\Me\docker\node-docker\:/app -p 3000:3000 -d --name <container name> <image name>`
-
-- same as above - specifies bind mount `-v <pathToLocalFolder>:<pathToContainerFolder>`
+- `docker run <image name>` _(namelesss container)_
+- `docker run -d --name <container name> <image name>` _(named container; running in **detached mode**)_
+- `docker run -p <external port>:<container port> -d --name <container name> <image name>` _(specifies ports)_
+- `docker run -v <pathToLocalFolder>:<pathToContainerFolder> -p <external port>:<container port> -d --name <container name> <image name>` _(specifies bind mount; see Note below)_
+- `docker run -v <pathToLocalFolder>:<pathToContainerFolder> -v <pathToMoreSpecifcContainerFolder> -p <external port>:<container port> -d --name <container name> <image name>` _(specifies bind mount; adds an **anonymous volume**; see note below)_
 
   NOTE: could also substitute the long local path with a variable (provided you are running the command from the localhost folder you want to map):
 
@@ -36,16 +26,17 @@
   - **powershell:** `${pwd}`
   - **bash:** `$(pwd)`
 
-  Sometimes `git bash for Windows` causes problems
+  Sometimes `git bash for Windows` causes problems here
 
-<hr />
+  NOTE: docker maps volumns based on **specificity** - the longer path in this case is more specific, so it will not be overwritten when following the process outlined in the `Dockerfile` _(eg. the copy step)_ as it overrides the bind mount
 
-`docker ps`
+- `docker ps` _(lists running containers)_
+- `docker ps -a` _(lists stopped and running containers)_
+- `docker rm <stopped container>` _(removes stopped container)_
+- `docker rm <container> -f` _(removes running or stopped container)_
 
-`docker rm <stopped container>`
+### General Commands
 
-`docker rm <container> -f`
+- `docker exec -it <container name> bash` _(shells into container)_
 
-### Shelling into Containers
-
-`docker exec -it <container name> bash`
+  NOTE: can replace with a different shell as needed (eg. mongo, etc.)
