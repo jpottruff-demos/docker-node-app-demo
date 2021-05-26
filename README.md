@@ -19,6 +19,7 @@ _See `container:*` commands_
 - `docker run -p <external port>:<container port> -d --name <container name> <image name>` _(specifies ports)_
 - `docker run -v <pathToLocalFolder>:<pathToContainerFolder> -p <external port>:<container port> -d --name <container name> <image name>` _(specifies bind mount; see Note below)_
 - `docker run -v <pathToLocalFolder>:<pathToContainerFolder> -v <pathToMoreSpecifcContainerFolder> -p <external port>:<container port> -d --name <container name> <image name>` _(specifies bind mount; adds an **anonymous volume**; see note below)_
+- `docker run -v <pathToLocalFolder>:<pathToContainerFolder>:ro -v <pathToMoreSpecifcContainerFolder> -p <external port>:<container port> -d --name <container name> <image name>` _(makes the bind mount **read only** on /app)_
 
   NOTE: could also substitute the long local path with a variable (provided you are running the command from the localhost folder you want to map):
 

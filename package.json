@@ -10,6 +10,7 @@
     "container:run": "docker run -p 3000:3000 -d --name node-app-container node-app-img",
     "container:run-mount-cmd": "docker run -v %cd%:/app -p 3000:3000 -d --name node-app-container node-app-img",
     "container:run-mount-cmd-anon-volume-nodemods": "docker run -v %cd%:/app -v /app/node_modules -p 3000:3000 -d --name node-app-container node-app-img",
+    "container:run-mount-cmd-anon-volume-nodemods-read-only": "docker run -v %cd%:/app:ro -v /app/node_modules -p 3000:3000 -d --name node-app-container node-app-img",
     "container:run-mount-psh": "docker run -v ${pwd}:/app -p 3000:3000 -d --name node-app-container node-app-img",
     "container:run-mount-bash": "docker run -v $(pwd):/app -p 3000:3000 -d --name node-app-container node-app-img",
     "container:remove": "docker rm node-app-container -f",
