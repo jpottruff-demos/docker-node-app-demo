@@ -21,15 +21,19 @@ _See `container:*` commands_
 - `docker run -v <pathToLocalFolder>:<pathToContainerFolder> -v <pathToMoreSpecifcContainerFolder> -p <external port>:<container port> -d --name <container name> <image name>` _(specifies bind mount; adds an **anonymous volume**; see note below)_
 - `docker run -v <pathToLocalFolder>:<pathToContainerFolder>:ro -v <pathToMoreSpecifcContainerFolder> -p <external port>:<container port> -d --name <container name> <image name>` _(makes the bind mount **read only** on /app)_
 
-  NOTE: could also substitute the long local path with a variable (provided you are running the command from the localhost folder you want to map):
+NOTE: could also substitute the long local path with a variable (provided you are running the command from the localhost folder you want to map):
 
-  - **cmd:** `%cd%`
-  - **powershell:** `${pwd}`
-  - **bash:** `$(pwd)`
+- **cmd:** `%cd%`
+- **powershell:** `${pwd}`
+- **bash:** `$(pwd)`
 
-  Sometimes `git bash for Windows` causes problems here
+Sometimes `git bash for Windows` causes problems here
 
-  NOTE: docker maps volumns based on **specificity** - the longer path in this case is more specific, so it will not be overwritten when following the process outlined in the `Dockerfile` _(eg. the copy step)_ as it overrides the bind mount
+NOTE: docker maps volumns based on **specificity** - the longer path in this case is more specific, so it will not be overwritten when following the process outlined in the `Dockerfile` _(eg. the copy step)_ as it overrides the bind mount
+
+#### A Couple more variations / examples
+
+- `docker run -v <pathToLocalFolder>:<pathToContainerFolder> -v <pathToMoreSpecifcContainerFolder> --env PORT=4000 -p <external port>:4000 -d --name <container name> <image name>` _(modifies the default PORT specified in the docker file; note the container port must be changed to match as well)_
 
 - `docker ps` _(lists running containers)_
 - `docker ps -a` _(lists stopped and running containers)_

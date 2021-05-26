@@ -18,10 +18,13 @@ RUN npm install
 # if you decide to rebuild the image, docker can tell if nothing has changed; if nothing changes, gives you the final cached result of that last step 
 COPY . ./
 
+# This will allow us to set the env port
+ENV PORT 3000
+
 # Exposed port on the container
-# IMPORTANT - this does nothing; its more for documentation purposes
+# IMPORTANT - this does **NOTHING**; its more for documentation purposes
 # you must put it in your run command (eg. -p 3000:3000)
-EXPOSE 3000
+EXPOSE $PORT
 
 # Starts the app (dev via nodemon)
 CMD ["npm", "run", "dev"]
